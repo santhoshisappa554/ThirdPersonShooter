@@ -19,7 +19,8 @@ public class HitOp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (PlayerMovement.Instance.shot == true)
+        transform.position = PlayerMovement.Instance.hitpos;
+        if (PlayerMovement.Instance.shot == true)
         {
             StartCoroutine("Couroutine");
         }
@@ -37,6 +38,8 @@ public class HitOp : MonoBehaviour
             PlayerMovement.Instance.AddtoHitPrefabPool(this.gameObject);
         }
     }
+    
 
-   
+
+
 }

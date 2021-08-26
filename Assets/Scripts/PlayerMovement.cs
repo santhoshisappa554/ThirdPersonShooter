@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject muzzleFlashPrefab;
     [SerializeField]
+    private GameObject CurrentmuzzleFlashPrefab;
+    [SerializeField]
     private GameObject hitMarketPrefab;
     [SerializeField]
     private GameObject currentPrefab;
@@ -19,8 +21,12 @@ public class PlayerMovement : MonoBehaviour
     AudioSource audioSource;
     public AudioClip clip1;
     public AudioClip clip2;
+    int Bullets = 50;
+    public Vector3 hitpos;
+    public Vector3 shotPos;
 
     Stack<GameObject> PrefabPool = new Stack<GameObject>();
+    
 
     public static PlayerMovement Instance
     {
@@ -42,61 +48,75 @@ public class PlayerMovement : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
-        if (Input.GetMouseButton(0))
+        if (Bullets > 0)
         {
-            audioSource.clip = clip1;
-            audioSource.Play();
-            
-            muzzleFlashPrefab.SetActive(true);
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
-            RaycastHit hit;
-            if (Physics.Raycast(ray,out hit,Mathf.Infinity))
+            print(Bullets);
+            if (Input.GetMouseButtonDown(0))
             {
-                audioSource.clip = clip2;
+                audioSource.clip = clip1;
                 audioSource.Play();
-                shot = true;
-                Debug.Log("Raycast got hit"+hit.transform.name);
-                //GameObject temp= (GameObject) Instantiate(hitMarketPrefab, hit.point, Quaternion.LookRotation(hit.normal)) ;
-                //Destroy(temp, 1.0f);
-                SpawnPrefab();
-               
-              
+                //muzzleFlashPrefab.SetActive(true);
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit;
+                
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                {
+                    hitpos = hit.point;
+                    //print("hit point": +hitpos);
+                    print("ray hit");
+                    audioSource.clip = clip2;
+                    audioSource.Play();
+                    shot = true;
+                    Debug.Log("Raycast got hit" + hit.transform.name);
+                    //GameObject temp= (GameObject) Instantiate(hitMarketPrefab, hit.point, Quaternion.LookRotation(hit.normal)) ;
+                    //Destroy(temp, 1.0f);
+                    SpawnPrefab();
+
+
+                }
+
+                else
+                {
+                    //bulletshot = false;
+                    //muzzleFlashPrefab.SetActive(false);
+                    //shot = false;
+                }
             }
-        
+
         }
-        else
-        {
-            muzzleFlashPrefab.SetActive(false);
-            //shot = false;
-        }
+
+
     }
-   
+  
 
 
-    void CreatePrefabs()
+    void CreatePrefabs()//shot
     {
         print("create prefabs called");
         PrefabPool.Push(Instantiate(hitMarketPrefab));
         PrefabPool.Peek().SetActive(false);
         PrefabPool.Peek().name = "Hit_Marker";
     }
-    public void AddtoHitPrefabPool(GameObject temp)
+   
+    public void AddtoHitPrefabPool(GameObject temp)//shot
     {
         print("added to the pool");
         PrefabPool.Push(temp);
         PrefabPool.Peek().SetActive(false);
         shot = false;
     }
-
-    public void SpawnPrefab()
+   
+    public void SpawnPrefab()//shot
     {
+        print("Spawn prefab called");
         if (PrefabPool.Count == 0)
         {
             print("count is zero");
@@ -107,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         tempPrefab.transform.position = currentPrefab.transform.position;
         currentPrefab = tempPrefab;
     }
-
+   
 
     private void Movement()
     {
@@ -118,4 +138,5 @@ public class PlayerMovement : MonoBehaviour
         character.Move(velocity * Time.deltaTime);
     }
    
+
 }

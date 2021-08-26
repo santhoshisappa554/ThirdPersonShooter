@@ -79,6 +79,7 @@
     <Compile Include="Assets\Game\Level_Dont_Touch\Environment_Model\Effects\hit_marker_particle\Scripts\ParticleSystemMultiplier.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\ObjectResetter.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
+    <Compile Include="Assets\HitOp.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Characters\FirstPersonCharacter\Scripts\RigidbodyFirstPersonController.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\AlphaButtonClickMask.cs" />
@@ -113,7 +114,9 @@
     <Compile Include="Assets\Game\Level_Dont_Touch\Environment_Model\Effects\hit_marker_particle\Scripts\Hose.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\SimpleActivatorMenu.cs" />
-    <Compile Include="Assets\HitOp.cs" />
+    <Compile Include="Assets\bulletOp.cs" />
+    <Compile Include="Assets\Bullet.cs" />
+    <Compile Include="Assets\WeaponShotpos.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Cinema Suite\Cinema Themes\ReadMe.txt" />

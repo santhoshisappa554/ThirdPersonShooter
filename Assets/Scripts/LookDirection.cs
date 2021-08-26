@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class LookDirection : MonoBehaviour
 {
+    public static LookDirection instance;
     private float rotateXSpeed=1.0f;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
