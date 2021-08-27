@@ -24,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
     int Bullets = 50;
     public Vector3 hitpos;
     public Vector3 shotPos;
+    private bool isReloading = false;
+    public int currentBullets;
+    private UIManager uiManager;
+    public bool hasCoin = false;
+    public GameObject weapon;
+    
 
     Stack<GameObject> PrefabPool = new Stack<GameObject>();
 
@@ -48,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
     }
 
@@ -76,9 +83,17 @@ public class PlayerMovement : MonoBehaviour
                     audioSource.Play();
                     shot = true;
                     Debug.Log("Raycast got hit" + hit.transform.name);
+                    DestructedTools destroyCrate = hit.transform.GetComponent<DestructedTools>();
+                    if (destroyCrate != null)
+                    {
+                        print("hit");
+                        destroyCrate.OnCrateDestroy();
+                    }
                     //GameObject temp= (GameObject) Instantiate(hitMarketPrefab, hit.point, Quaternion.LookRotation(hit.normal)) ;
                     //Destroy(temp, 1.0f);
                     SpawnPrefab();
+                   
+
 
 
                 }
@@ -89,6 +104,13 @@ public class PlayerMovement : MonoBehaviour
                     //muzzleFlashPrefab.SetActive(false);
                     //shot = false;
                 }
+                if (Input.GetKeyDown(KeyCode.R)&& isReloading==false)
+                {
+                    isReloading = true;
+                    StartCoroutine("Reload");
+                }
+                Bullets--;
+                uiManager.Updateammo(currentBullets);
             }
 
         }
@@ -136,6 +158,17 @@ public class PlayerMovement : MonoBehaviour
         velocity.y -= gravity;
         velocity = transform.transform.TransformDirection(velocity);
         character.Move(velocity * Time.deltaTime);
+    }
+
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(1.0f);
+        isReloading = false;
+        currentBullets = Bullets;
+    }
+    public void EnableWeapon()
+    {
+        weapon.SetActive(true);
     }
 
 }

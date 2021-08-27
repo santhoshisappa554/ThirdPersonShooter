@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     public GameObject firePoint;
     public float timer = 1.0f;
     public float fireRate = 1.0f;
+   
     public static Bullet Instance1
     {
         get
