@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class bulletOp : MonoBehaviour
 {
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = WeaponShotpos.instance.transform.rotation;
+        //transform.rotation = WeaponShotpos.instance.transform.rotation;
         if (Bullet.Instance1.bulletshot == true)
         {
             StartCoroutine("BulletCouroutine");

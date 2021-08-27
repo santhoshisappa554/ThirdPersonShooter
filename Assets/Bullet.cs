@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
-{ 
+{
     [SerializeField]
     private GameObject muzzleFlashPrefab;
     [SerializeField]
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-     void Update()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -62,6 +62,7 @@ public class Bullet : MonoBehaviour
         tempbulletPrefab.transform.position = firePoint.transform.position;
         CurrentmuzzleFlashPrefab = tempbulletPrefab;
     }
+
 
 
 }

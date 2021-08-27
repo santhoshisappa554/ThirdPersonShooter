@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 shotPos;
 
     Stack<GameObject> PrefabPool = new Stack<GameObject>();
-    
+
 
     public static PlayerMovement Instance
     {
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
                 //muzzleFlashPrefab.SetActive(true);
                 Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
-                
+
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-  
+
 
 
     void CreatePrefabs()//shot
@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         PrefabPool.Peek().SetActive(false);
         PrefabPool.Peek().name = "Hit_Marker";
     }
-   
+
     public void AddtoHitPrefabPool(GameObject temp)//shot
     {
         print("added to the pool");
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         PrefabPool.Peek().SetActive(false);
         shot = false;
     }
-   
+
     public void SpawnPrefab()//shot
     {
         print("Spawn prefab called");
@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         tempPrefab.transform.position = currentPrefab.transform.position;
         currentPrefab = tempPrefab;
     }
-   
+
 
     private void Movement()
     {
@@ -137,6 +137,5 @@ public class PlayerMovement : MonoBehaviour
         velocity = transform.transform.TransformDirection(velocity);
         character.Move(velocity * Time.deltaTime);
     }
-   
 
 }
