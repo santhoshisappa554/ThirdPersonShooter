@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private UIManager uiManager;
     public bool hasCoin = false;
     public GameObject weapon;
+    public bool weaponActive=false;
     
 
     Stack<GameObject> PrefabPool = new Stack<GameObject>();
@@ -62,56 +63,62 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
-        if (Bullets > 0)
-        {
+        
             print(Bullets);
+        if (weaponActive == true)
+        {
             if (Input.GetMouseButtonDown(0))
             {
-                audioSource.clip = clip1;
-                audioSource.Play();
-                //muzzleFlashPrefab.SetActive(true);
-                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-                RaycastHit hit;
-
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                {
-                    hitpos = hit.point;
-                    //print("hit point": +hitpos);
-                    print("ray hit");
-                    audioSource.clip = clip2;
+            if (Bullets > 0)
+            {
+                
+                    audioSource.clip = clip1;
                     audioSource.Play();
-                    shot = true;
-                    Debug.Log("Raycast got hit" + hit.transform.name);
-                    DestructedTools destroyCrate = hit.transform.GetComponent<DestructedTools>();
-                    if (destroyCrate != null)
+                    //muzzleFlashPrefab.SetActive(true);
+                    Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                    RaycastHit hit;
+
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                     {
-                        print("hit");
-                        destroyCrate.OnCrateDestroy();
+                        hitpos = hit.point;
+                        //print("hit point": +hitpos);
+                        print("ray hit");
+                        audioSource.clip = clip2;
+                        audioSource.Play();
+                        shot = true;
+                        Debug.Log("Raycast got hit" + hit.transform.name);
+                        DestructedTools destroyCrate = hit.transform.GetComponent<DestructedTools>();
+                        if (destroyCrate != null)
+                        {
+                            print("hit");
+                            destroyCrate.OnCrateDestroy();
+                        }
+                        //GameObject temp= (GameObject) Instantiate(hitMarketPrefab, hit.point, Quaternion.LookRotation(hit.normal)) ;
+                        //Destroy(temp, 1.0f);
+                        SpawnPrefab();
+
+
+
+
                     }
-                    //GameObject temp= (GameObject) Instantiate(hitMarketPrefab, hit.point, Quaternion.LookRotation(hit.normal)) ;
-                    //Destroy(temp, 1.0f);
-                    SpawnPrefab();
-                   
 
-
-
+                    else
+                    {
+                        //bulletshot = false;
+                        //muzzleFlashPrefab.SetActive(false);
+                        //shot = false;
+                    }
+                    if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
+                    {
+                        isReloading = true;
+                        StartCoroutine("Reload");
+                    }
+                    Bullets--;
+                    uiManager.Updateammo(currentBullets);
                 }
-
-                else
-                {
-                    //bulletshot = false;
-                    //muzzleFlashPrefab.SetActive(false);
-                    //shot = false;
-                }
-                if (Input.GetKeyDown(KeyCode.R)&& isReloading==false)
-                {
-                    isReloading = true;
-                    StartCoroutine("Reload");
-                }
-                Bullets--;
-                uiManager.Updateammo(currentBullets);
             }
+                
 
         }
 
@@ -169,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
     public void EnableWeapon()
     {
         weapon.SetActive(true);
+        weaponActive = true;
     }
 
 }

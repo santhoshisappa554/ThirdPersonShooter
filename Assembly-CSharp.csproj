@@ -120,7 +120,10 @@
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
     <Compile Include="Assets\Scripts\GunShop.cs" />
-    <Compile Include="Assets\DestructedTools.cs" />
+    <Compile Include="Assets\Scripts\DestructedTools.cs" />
+    <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\ButtonFunction.cs" />
+    <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\MovementCamera.cs" />
+    <Compile Include="Assets\EnemyFollow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Cinema Suite\Cinema Themes\ReadMe.txt" />

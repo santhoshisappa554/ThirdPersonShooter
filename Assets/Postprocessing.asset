@@ -55,7 +55,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.46666667, g: 0.36862746, b: 0, a: 1}
+    value: {r: 0.4245283, g: 0.26115364, b: 0.1501869, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
@@ -140,8 +140,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0
   externalLut:
     overrideState: 0
     value: {fileID: 0}
@@ -168,35 +168,35 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   ldrLut:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 0}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 0
+    overrideState: 1
     value: 1
   temperature:
-    overrideState: 0
+    overrideState: 1
     value: 0
   tint:
-    overrideState: 0
+    overrideState: 1
     value: 0
   colorFilter:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0.5754717, g: 0.15506254, b: 0.08957815, a: 1}
   hueShift:
-    overrideState: 0
+    overrideState: 1
     value: 0
   saturation:
-    overrideState: 0
+    overrideState: 1
     value: 0
   brightness:
-    overrideState: 0
+    overrideState: 1
     value: 0
   postExposure:
     overrideState: 0
     value: 0
   contrast:
-    overrideState: 0
+    overrideState: 1
     value: 0
   mixerRedOutRedIn:
     overrideState: 0
@@ -217,17 +217,17 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   mixerBlueOutRedIn:
-    overrideState: 0
+    overrideState: 1
     value: 0
   mixerBlueOutGreenIn:
-    overrideState: 0
+    overrideState: 1
     value: 0
   mixerBlueOutBlueIn:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.97118163, y: 1, z: 0.96943164, w: 0.21922427}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}

@@ -29,11 +29,15 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (PlayerMovement.Instance.weaponActive == true)
         {
-            bulletshot = true;
-            SpawnBulletPrefab();
+            if (Input.GetMouseButtonDown(0))
+            {
+                bulletshot = true;
+                SpawnBulletPrefab();
+            }
         }
+       
     }
     void BulletPrefabs()//bullet
     {
